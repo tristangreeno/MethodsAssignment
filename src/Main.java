@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.Random;
 
 /** The purpose of these classes is to assimilate data concerning the browsing history of a
@@ -9,12 +10,20 @@ import java.util.Random;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Random randnum = new Random();
         BrowserHistory browserHistory = new BrowserHistory();
         Naming naming = new Naming();
         Tracking tracking = new Tracking();
-        Averages averages = new Averages();
+        Averages averages = null;
+        int[] avgSite = new int[5];
+
+        // Need help on try/catch
+        try {
+            averages = new Averages(5);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         tracking.leastFreqNum = 0;
         tracking.mostFreqNum = 0;
